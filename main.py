@@ -3,7 +3,7 @@ import json
 from shapely.geometry import Polygon
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
-annotations_path = "/home/can/Desktop/Python/monkey-model/annotations/json"
+annotations_path = "/home/can/Desktop/Python/monkey-model/new_annotations/json_pixel"
 annotations_out_path = "/home/can/Desktop/Python/monkey-model/patch_annotations/xml"
 patch_size = 1024
 step = 64
@@ -33,6 +33,8 @@ def generate_patches(x_offset, y_offset):
 
 
 for fileName in os.listdir(annotations_path):
+    if not fileName.endswith("inflammatory-cells.json"):
+        continue
     file_path = os.path.join(annotations_path, fileName)
     out_file_path = os.path.join(
         annotations_out_path, fileName.replace(".json", ".xml"))
